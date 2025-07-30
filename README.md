@@ -200,6 +200,7 @@ If CUDA version mismatch:
 ```bash
 srun -N 1 --ntasks-per-node=2 --gres=gpu:1 --mem=16000 --time=24:00:00 --partition=gpu_scholar --pty bash
 srun -N 1 --ntasks=2 --cpus-per-task=10 --gres=gpu:4 --mem=64000 --time=48:00:00 --partition=gpu_scholar --pty bash
+srun -N 1 --ntasks=2 --cpus-per-task=8 --gres=gpu:2 --mem=64000 --time=48:00:00 --partition=gpu_scholar --pty bash
 ```
 # To monitor GPU usage live:
 
@@ -268,8 +269,8 @@ gmx --version # You should see: ✅ Installation Complete!
 
 ### 5. 🧪 Optional: Run Benchmark/Test NVT, NPT and Final Production Run
 ```bash
-export OMP_NUM_THREADS=10      # optional for 10 OpenMP threads per MPI rank (--cpus-per-task=10)
-export CUDA_VISIBLE_DEVICES=0  # optional: force GPU0
+export OMP_NUM_THREADS=8      # optional for 10 OpenMP threads per MPI rank (--cpus-per-task=10)
+export CUDA_VISIBLE_DEVICES=0,1  # optional: force GPU0
 gmx mdrun -deffnm NVT -nb gpu -pme gpu -v
 gmx mdrun -deffnm NPT -nb gpu -pme gpu -v
 ```
