@@ -278,6 +278,8 @@ gmx mdrun -deffnm NPT -nb gpu -pme gpu -v
 ```bash
 gmx grompp -f MD.mdp -c NPT.gro -t NPT.cpt -p topol.top -n index.ndx -maxwarn 2 -o MD.tpr
 gmx mdrun -deffnm MD -nb gpu -pme gpu -v
+gmx mdrun -deffnm MD -cpi MD.cpt -append \
+  -ntmpi 2 -npme 1 -ntomp 8 -nb gpu -pme gpu -v
 ```
 ### 7. Job Log Check: 
 
